@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-dns
+  # generateName: create-dns-   # use with `kubectl create` for unique names
+spec:
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: create-dns
+          image: ghcr.io/ramybouchareb25/hostifer-create-job:latest # replace with your image
+          args: ["$(SUBDOMAIN)"]
+          env:
+            - name: SUBDOMAIN
+              value: "app"  # replace with your desired subdomain
+          envFrom:
+            - configMapRef:
+                name: cloudflare-config
+            - secretRef:
+                name: cloudflare-secret  # for CF_API_TOKEN
+      imagePullSecrets:
+        - name: ghcr-login-secret
