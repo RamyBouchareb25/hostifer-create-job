@@ -3,8 +3,4 @@ kind: ConfigMap
 metadata:
   name: cloudflare-config
 data:
-  CF_ACCOUNT_ID: "<account-id>"
-  CF_TUNNEL_ID: "<tunnel-id>"
-  CF_ZONE_ID: "<zone-id>"
-  CF_TUNNEL_CNAME: "<tunnel-cname>"
-  TRAEFIK_SERVICE: "<traefik-service-url>"
+  SUBDOMAIN: "app"  # replace with your desired subdomain

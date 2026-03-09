@@ -13,9 +13,6 @@ spec:
         - name: create-dns
           image: ghcr.io/ramybouchareb25/hostifer-create-job:latest # replace with your image
           args: ["$(SUBDOMAIN)"]
-          env:
-            - name: SUBDOMAIN
-              value: "app"  # replace with your desired subdomain
           envFrom:
             - configMapRef:
                 name: cloudflare-config
